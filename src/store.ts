@@ -43,7 +43,7 @@ export default createStore({
 
       if (res.status !== 401) {
         commit(MutationTypes.SET_AUTHENTICATION, { isAuthenticated: true })
-        commit(MutationTypes.SET_USER, { user: res.data.user })
+        commit(MutationTypes.SET_USER, { user: res.data })
       }
     },
     async login({ commit }: { commit: Commit }, user: { username: string }) {

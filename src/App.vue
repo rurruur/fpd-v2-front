@@ -27,11 +27,16 @@ export default {
       return this.store.getters.isAuthenticated
     },
     items() {
+      const items = [
+        { title: '홈', href: '/', disabled: false },
+        { title: '글 목록', href: '/post', disabled: false }
+      ]
+      if (this.store.getters.user.role === 'ADMIN') {
+        items.push({ title: '회원 관리', href: '/admin', disabled: false })
+      }
+
       return this.store.getters.isAuthenticated
-        ? [
-            { title: '홈', href: '/', disabled: false },
-            { title: '글 작성', href: '/post', disabled: false }
-          ]
+        ? items
         : [
             { title: '로그인', href: '/login', disabled: false },
             { title: '회원가입', href: '/register', disabled: false }
